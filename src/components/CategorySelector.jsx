@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const CategorySelector = ({ categories, active, onChange }) => {
+const CategorySelector = ({ categories, activeCategory, onSelect }) => {
   return (
     <div style={{
       display: 'grid',
@@ -11,14 +11,14 @@ const CategorySelector = ({ categories, active, onChange }) => {
     }}>
       {categories.map((cat) => {
         const Icon = cat.icon;
-        const isActive = active === cat.id;
+        const isActive = activeCategory === cat.id;
 
         return (
           <motion.button
             key={cat.id}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => onChange(cat.id)}
+            onClick={() => onSelect(cat.id)}
             style={{
               background: isActive 
                 ? `linear-gradient(135deg, var(--accent-purple), var(--accent-red))`
@@ -29,17 +29,17 @@ const CategorySelector = ({ categories, active, onChange }) => {
               color: isActive ? 'white' : 'var(--text-dim)',
               cursor: 'pointer',
               display: 'flex',
-              flexDirection: 'column',
               alignItems: 'center',
-              gap: '8px',
+              justifyContent: 'center',
+              gap: '12px',
               transition: 'all 0.3s ease',
               backdropFilter: 'blur(10px)',
               boxShadow: isActive ? '0 8px 20px rgba(255, 60, 95, 0.3)' : 'none'
             }}
           >
-            <Icon size={24} color={isActive ? 'white' : cat.color} strokeWidth={isActive ? 2.5 : 2} />
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, letterSpacing: '1px' }}>
-              {cat.label}
+            <Icon size={20} color={isActive ? 'white' : cat.color} strokeWidth={isActive ? 2.5 : 2} />
+            <span style={{ fontSize: '0.9rem', fontWeight: 700, letterSpacing: '1px' }}>
+              {cat.name}
             </span>
           </motion.button>
         );
