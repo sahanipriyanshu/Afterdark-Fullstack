@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfterDark | Private Couples Game</title>
+    <meta name="description" content="Bold, intimate, and playful challenges for consenting adults. Perfect for increasing attraction and chemistry.">
+    <!-- Google Fonts: Outfit for a modern, sleek look -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Logo/Header -->
+        <header class="app-header">
+            <h1 class="logo">After<span>Dark</span></h1>
+            <p class="tagline">Ignite the Spark</p>
+        </header>
+
+        <!-- Category Selection -->
+        <div class="category-selector">
+            <button class="cat-btn active" data-category="tease" id="btn-tease">Tease</button>
+            <button class="cat-btn" data-category="intimate" id="btn-intimate">Intimate</button>
+            <button class="cat-btn" data-category="bold" id="btn-bold">Bold</button>
+            <button class="cat-btn" data-category="surprise" id="btn-surprise">Surprise</button>
+        </div>
+
+        <!-- Main Challenge Card Area -->
+        <main class="game-area">
+            <div class="challenge-card" id="challenge-card">
+                <div class="card-front">
+                    <div class="glass-orb"></div>
+                    <p class="hint">Tap to Reveal</p>
+                </div>
+                <div class="card-back">
+                    <div class="category-indicator" id="card-category">TEASE</div>
+                    <div class="challenge-text" id="challenge-text">Prepare for something special...</div>
+                </div>
+            </div>
+            
+            <button class="action-btn" id="reveal-btn">Reveal Challenge</button>
+        </main>
+
+        <!-- Footer Info -->
+        <footer class="app-footer">
+            <p>Private & Discreent • Consenting Adults Only</p>
+        </footer>
+    </div>
+
+    <!-- UI Interaction Script -->
+    <script src="script.js"></script>
+</body>
+</html>
