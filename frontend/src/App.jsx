@@ -15,6 +15,31 @@ const App = () => {
     localStorage.setItem('ageVerified', 'true');
   };
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+  // Sync payment status from backend on load
+  useEffect(() => {
+    const syncPaymentStatus = async () => {
+      const token = localStorage.getItem('token');
+      if (token && user) {
+        try {
+          // I'll need to add a /me route to the backend for this
+          const res = await fetch(`${API_URL}/api/auth/me`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          const data = await res.json();
+          if (res.ok) {
+            setHasPaid(data.hasPaid);
+            localStorage.setItem('hasPaid', data.hasPaid.toString());
+          }
+        } catch (err) {
+          console.error("Session sync failed:", err);
+        }
+      }
+    };
+    syncPaymentStatus();
+  }, [user]);
+
   const handleAuthSuccess = (userData) => {
     // userData format from backend: { token, user: { id, email, hasPaid } }
     setUser(userData.user);
@@ -33,6 +58,14 @@ const App = () => {
     const updatedUser = { ...user, hasPaid: true };
     setUser(updatedUser);
     localStorage.setItem('user', JSON.stringify(updatedUser));
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setHasPaid(false);
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('hasPaid');
   };
 
   return (
@@ -58,7 +91,7 @@ const App = () => {
 
           {/* Special Game Route */}
           <Route path="/game" element={
-            !hasPaid ? <Navigate to="/payment" /> : <AppGame />
+            !hasPaid ? <Navigate to="/payment" /> : <AppGame onLogout={handleLogout} />
           } />
 
           {/* Default Redirection */}

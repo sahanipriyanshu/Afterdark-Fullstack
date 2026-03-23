@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Flame, Heart, Eye, Sparkles, RefreshCw } from 'lucide-react';
+import { Flame, Heart, Eye, Sparkles, RefreshCw, LogOut } from 'lucide-react';
 import CategorySelector from './components/CategorySelector';
 import ChallengeCard from './components/ChallengeCard';
 import { challenges } from './data/challenges';
@@ -13,7 +13,7 @@ const categories = [
   { id: 'surprise', name: 'Surprise', icon: Sparkles, color: '#a855f7' }
 ];
 
-function AppGame() {
+function AppGame({ onLogout }) {
   const [activeCategory, setActiveCategory] = useState('tease');
   const [currentChallenge, setCurrentChallenge] = useState(null);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -68,6 +68,24 @@ function AppGame() {
           letterSpacing: '2px',
           textTransform: 'uppercase'
         }}>Private Couples Game</p>
+        
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          onClick={onLogout}
+          style={{
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            background: 'none',
+            border: 'none',
+            color: 'var(--text-dim)',
+            cursor: 'pointer',
+            padding: '10px'
+          }}
+          title="Logout"
+        >
+          <LogOut size={20} />
+        </motion.button>
       </header>
 
       <main>
