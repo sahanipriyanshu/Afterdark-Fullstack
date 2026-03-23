@@ -6,7 +6,15 @@ export const challenges = {
         "Send your partner a bold text message right now.",
         "Describe a dream you've had about your partner.",
         "Whisper a 'naughty' plan for later tonight while standing close.",
-        "Steal a passionate kiss in a place where you might be seen."
+        "Steal a passionate kiss in a place where you might be seen.",
+        "Nibble on your partner's earlobe for 10 seconds.",
+        "Blindfold your partner and describe exactly what you want to do to them later.",
+        "Give your partner a 'butterfly kiss' (eyelashes brushing their skin).",
+        "Remove one piece of clothing from your partner using only your teeth.",
+        "Trace the outline of your partner's body with a cold finger.",
+        "Whisper three things that turn you on the most about them.",
+        "Ask your partner to strike a seductive pose and admire the view.",
+        "Blow gently on your partner's neck while standing behind them."
     ],
     intimate: [
         "Give your partner a slow, 30-second hug.",
@@ -14,24 +22,49 @@ export const challenges = {
         "Look into each other's eyes for a full minute without speaking.",
         "Hold hands and talk about your favorite memory together.",
         "Give your partner a gentle massage for 3 minutes.",
-        "Describe one thing your partner does that always makes you feel loved."
+        "Describe one thing your partner does that always makes you feel loved.",
+        "Slow dance together without any music for two minutes.",
+        "Write a short, heartfelt note to your partner and hide it for them to find.",
+        "Give your partner a long forehead kiss and tell them they are safe with you.",
+        "Share a secret fear or insecurity you've never mentioned before.",
+        "Describe the exact moment you realized you were falling for them.",
+        "Cuddle in silence and focus on the sound of each other's breathing.",
+        "Give your partner a foot massage using warm oil or lotion.",
+        "Look into each other's eyes and say 'I love you' in three different ways.",
+        "Talk about a place you've always wanted to travel to together."
     ],
     bold: [
         "Give your partner a passionate kiss that lasts at least 15 seconds.",
         "Whisper a secret fantasy to your partner.",
         "Take the lead in Cowgirl or Reverse Cowgirl. For an extra tease, spell 'COCONUT' with your movements.",
         "Don't wait for the bedroom. Use the nearest wall for a passionate standing encounter.",
-        "Experience mutual satisfaction with the classic 69. Focus on the give and take.",
+        "Experience mutual satisfaction with a classic 69. Focus on the give and take.",
         "Go deep with Doggy-style. Take control of the hips and set the rhythm.",
         "Elevate the classic missionary into the Anvil position. Legs on shoulders for maximum intensity.",
-        "Move away from the mattress. Use a chair to unlock new angles and playful roleplay possibilities.",
-        "Describe what you want to do to your partner later tonight."
+        "Move away from the mattress. Use a chair to unlock new angles and playful roleplay.",
+        "Describe exactly what you're going to do to your partner later tonight.",
+        "Blindfold your partner and explore their body with something soft (like silk).",
+        "Try a new location in the house for a 5-minute 'quickie'.",
+        "Roleplay: Pretend you're meeting for the first time at a bar. Try to pick each other up.",
+        "Use a piece of silk or a tie to gently restrain your partner's hands for 2 minutes.",
+        "Give your partner a sensual 'lap dance' for the duration of one song.",
+        "Whisper your most daring 'forbidden' fantasy while maintaining eye contact."
     ],
     surprise: [
         "Switch roles with your partner for the next challenge.",
         "Partner's choice: Pick any challenge from any category.",
         "Blindfold your partner and give them a light kiss somewhere surprising.",
         "Make a bold toast to your future together.",
-        "Dance slowly together for one whole song."
+        "Dance slowly together for one whole song.",
+        "Truth or Dare: Partner picks one for you.",
+        "Mirror Move: For the next 5 minutes, you must copy your partner's every movement.",
+        "Kitchen Heat: The next challenge must take place in the kitchen.",
+        "Ice Breaker: Place an ice cube in your mouth and give your partner a 'chilly' kiss.",
+        "Wardrobe Swap: Swap one item of clothing with your partner right now.",
+        "Random Category: Pick a number 1-3 to choose a different category for your partner.",
+        "Timed Heat: You have 60 seconds to make your partner blush.",
+        "Foodie Fun: Feed your partner something sweet or spicy from the fridge.",
+        "Secret Task: Whisper a task to your partner that they must complete silently.",
+        "Double Trouble: The next two challenges count as one long session."
     ]
 };
