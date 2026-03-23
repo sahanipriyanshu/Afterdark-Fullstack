@@ -6,15 +6,33 @@ const Auth = ({ onAuthSuccess }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // TODO: Connect to Express Backend
-    // Mocking success for UI design phase
-    setTimeout(() => {
+    
+    // Get values from form (I'll add refs or state for email/password)
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
+    try {
+      const endpoint = isLogin ? '/api/auth/login' : '/api/auth/signup';
+      const response = await fetch(`${API_URL}${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Something went wrong');
+
+      onAuthSuccess({ email: data.user.email, token: data.token, hasPaid: data.user.hasPaid });
+    } catch (err) {
+      alert(err.message);
+    } finally {
       setLoading(false);
-      onAuthSuccess({ email: 'user@example.com', token: 'mock-jwt' });
-    }, 1500);
+    }
   };
 
   return (

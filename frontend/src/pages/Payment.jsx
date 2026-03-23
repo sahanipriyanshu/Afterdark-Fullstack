@@ -2,12 +2,66 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { IndianRupee, CreditCard, Smartphone, QrCode } from 'lucide-react';
 
-const Payment = ({ upiId, onPaymentComplete }) => {
-  const handleRazorpay = () => {
-    // Razorpay Integration logic would go here
-    // For now, mock success
-    alert("Razorpay Checkout Opening... (Test Mode)");
-    onPaymentComplete();
+const Payment = ({ user, onPaymentComplete, upiId }) => {
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const RAZORPAY_KEY_ID = 'rzp_test_SURw1qFabMMyAW'; // In prod, use import.meta.env.VITE_RAZORPAY_KEY_ID
+
+  const handleRazorpay = async () => {
+    try {
+      // 1. Create Order on Backend
+      const res = await fetch(`${API_URL}/api/payment/order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const order = await res.json();
+
+      if (!res.ok) throw new Error(order.message || "Failed to create order");
+
+      // 2. Open Razorpay Checkout
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: order.amount,
+        currency: order.currency,
+        name: "AfterDark Game",
+        description: "Full Access Unlock",
+        order_id: order.id,
+        handler: async (response) => {
+          // 3. Verify Payment on Backend
+          try {
+            const verifyRes = await fetch(`${API_URL}/api/payment/verify`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                userId: user.id
+              })
+            });
+
+            const verifyData = await verifyRes.json();
+            if (verifyData.status === 'success') {
+              onPaymentComplete();
+            } else {
+              alert("Payment verification failed. Please contact support.");
+            }
+          } catch (err) {
+            alert("Verification Error: " + err.message);
+          }
+        },
+        prefill: {
+          email: user.email
+        },
+        theme: {
+          color: "#FF3C5F"
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      alert("Order Error: " + err.message);
+    }
   };
 
   return (

@@ -16,13 +16,23 @@ const App = () => {
   };
 
   const handleAuthSuccess = (userData) => {
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+    // userData format from backend: { token, user: { id, email, hasPaid } }
+    setUser(userData.user);
+    localStorage.setItem('user', JSON.stringify(userData.user));
+    localStorage.setItem('token', userData.token);
+    if (userData.user.hasPaid) {
+      setHasPaid(true);
+      localStorage.setItem('hasPaid', 'true');
+    }
   };
 
   const handlePaymentSuccess = () => {
     setHasPaid(true);
     localStorage.setItem('hasPaid', 'true');
+    // Also update user object in state/storage
+    const updatedUser = { ...user, hasPaid: true };
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
   };
 
   return (
@@ -43,7 +53,7 @@ const App = () => {
           {/* Payment Route */}
           <Route path="/payment" element={
             !user ? <Navigate to="/auth" /> :
-            hasPaid ? <Navigate to="/game" /> : <Payment upiId="sahanipriyanshu@upi" onPaymentComplete={handlePaymentSuccess} />
+            hasPaid ? <Navigate to="/game" /> : <Payment user={user} onPaymentComplete={handlePaymentSuccess} />
           } />
 
           {/* Special Game Route */}
