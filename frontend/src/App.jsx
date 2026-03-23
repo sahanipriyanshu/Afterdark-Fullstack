@@ -7,8 +7,8 @@ import Payment from './pages/Payment';
 
 const App = () => {
   const [ageVerified, setAgeVerified] = useState(() => localStorage.getItem('ageVerified') === 'true');
-  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')));
-  const [hasPaid, setHasPaid] = useState(() => localStorage.getItem('hasPaid') === 'true');
+  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')) || null);
+  const [hasPaid, setHasPaid] = useState(() => (localStorage.getItem('hasPaid') === 'true'));
 
   const handleAgeConfirm = () => {
     setAgeVerified(true);
@@ -62,7 +62,11 @@ const App = () => {
           } />
 
           {/* Default Redirection */}
-          <Route path="/" element={<Navigate to="/age-gate" />} />
+          <Route path="/" element={
+            !ageVerified ? <Navigate to="/age-gate" /> :
+            !user ? <Navigate to="/auth" /> :
+            !hasPaid ? <Navigate to="/payment" /> : <Navigate to="/game" />
+          } />
         </Routes>
       </div>
     </Router>

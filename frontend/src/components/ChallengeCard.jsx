@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const ChallengeCard = ({ isFlipped, challenge, category, onToggle }) => {
+const ChallengeCard = ({ isFlipped, challenge, category, onFlip, accentColor }) => {
   return (
     <div 
       className="challenge-card-wrapper" 
@@ -11,7 +11,7 @@ const ChallengeCard = ({ isFlipped, challenge, category, onToggle }) => {
         perspective: '1000px',
         cursor: 'pointer'
       }}
-      onClick={onToggle}
+      onClick={onFlip}
     >
       <motion.div
         animate={{ rotateY: isFlipped ? 180 : 0 }}
@@ -65,7 +65,7 @@ const ChallengeCard = ({ isFlipped, challenge, category, onToggle }) => {
             transform: 'rotateY(180deg)',
             background: 'linear-gradient(135deg, #2a1122, #151518)',
             borderRadius: '24px',
-            border: `1px solid var(--accent-${category === 'surprise' ? 'red' : category})`,
+            border: `2px solid ${accentColor || 'var(--accent-red)'}`,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
